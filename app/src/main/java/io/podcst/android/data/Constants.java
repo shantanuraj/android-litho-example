@@ -9,4 +9,6 @@ public class Constants {
     public final static String POPULAR  = "/popular";
     public final static String TRENDING = "/trending";
     public final static String FEATURED = "/featured";
+
+    public final static String DETAILS_BUNDLE = "podcast";
 }
