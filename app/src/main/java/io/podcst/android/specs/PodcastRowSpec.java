@@ -7,6 +7,7 @@ import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
+import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaEdge;
 
@@ -18,19 +19,23 @@ import com.facebook.yoga.YogaEdge;
 public class PodcastRowSpec {
 
     @OnCreateLayout
-    static ComponentLayout onCreateLayout(ComponentContext c) {
+    static ComponentLayout onCreateLayout(
+            ComponentContext c,
+            @Prop String title,
+            @Prop String author
+    ) {
 
         return Column.create(c)
                 .paddingDip(YogaEdge.ALL, 16)
                 .backgroundColor(Color.WHITE)
                 .child(
                         Text.create(c)
-                            .text("Hello, world")
-                            .textSizeSp(40)
+                            .text(title)
+                            .textSizeSp(20)
                 ).child(
                         Text.create((c))
-                            .text("Litho")
-                            .textSizeSp(20)
+                            .text(author)
+                            .textSizeSp(12)
                 ).build();
     }
 }

@@ -67,11 +67,14 @@ public class MainActivity extends AppCompatActivity {
                                      List<Podcst> podcasts) {
         int i = 0;
         for (Podcst podcast : podcasts) {
-            recyclerBinder.insertItemAt(
-                    i++,
-                    ComponentInfo.create()
-                            .component(PodcastRow.create(c).build())
-                            .build());
+            ComponentInfo.Builder componentInfoBuilder = ComponentInfo.create();
+            componentInfoBuilder.component(
+                    PodcastRow.create(c)
+                        .title(podcast.title)
+                        .author(podcast.author)
+                        .build());
+
+            recyclerBinder.insertItemAt(i++,  componentInfoBuilder.build());
         }
     }
 
