@@ -19,7 +19,6 @@ import java.util.List;
 import io.podcst.android.data.Api;
 import io.podcst.android.data.Podcast;
 import io.podcst.android.data.PodcastsResponse;
-import io.podcst.android.specs.PodcastRow;
 import io.podcst.android.specs.PodcastRowCard;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -61,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 component);
 
         setContentView(lithoView);
+
+        loadPodcasts();
     }
 
     private static void populateList(RecyclerBinder recyclerBinder,
@@ -78,10 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
+    private void loadPodcasts() {
         api.getFeaturedPodcasts()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
