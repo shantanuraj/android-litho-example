@@ -1,6 +1,7 @@
 package io.podcst.android.specs;
 
 import android.graphics.Color;
+import android.text.style.TtsSpan;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.drawable.ScalingUtils;
@@ -32,31 +33,32 @@ public class PodcastDetailsSpec {
                 .setUri(podcast.cover)
                 .build();
 
-        Card.Builder titleBar = Card.create(c)
+        final Card.Builder titleBar = Card.create(c)
                 .content(PodcastTitleBar.create(c)
                         .title(podcast.title)
                         .author(podcast.author)
                 );
 
-        Card.Builder description = Card.create(c)
+        final Card.Builder description = Card.create(c)
                 .content(PodcastDescription.create(c)
                         .description(podcast.description)
                 );
 
-        ComponentLayout.ContainerBuilder info = Column.create(c)
+        final Card.Builder image = Card.create(c)
+                .content(FrescoImage.create(c)
+                        .placeholderImageRes(R.drawable.ic_placeholder_cover)
+                        .placeholderImageScaleType(ScalingUtils.ScaleType.CENTER_CROP)
+                        .controller(controller));
+
+        final ComponentLayout.ContainerBuilder info = Column.create(c)
                 .paddingDip(YogaEdge.ALL, 16)
                 .child(titleBar)
                 .child(description);
 
         return Column.create(c)
                 .backgroundColor(Color.WHITE)
-                .child(
-                        FrescoImage.create(c)
-                                .placeholderImageRes(R.drawable.ic_placeholder_cover)
-                                .placeholderImageScaleType(ScalingUtils.ScaleType.CENTER_CROP)
-                                .controller(controller)
-                ).child(
-                        info
-                ).build();
+                .child(image)
+                .child(info)
+                .build();
     }
 }
