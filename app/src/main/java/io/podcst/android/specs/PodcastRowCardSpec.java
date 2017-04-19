@@ -1,11 +1,8 @@
 package io.podcst.android.specs;
 
-import android.app.ActionBar;
-import android.view.ViewGroup;
-
+import com.facebook.litho.Column;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
-import com.facebook.litho.Row;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
@@ -23,7 +20,7 @@ public class PodcastRowCardSpec {
     @OnCreateLayout
     static ComponentLayout onCreateLayout(ComponentContext c, @Prop Podcast podcast) {
 
-        return Row.create(c)
+        return Column.create(c)
                 .child(Card.create(c)
                         .content(PodcastRow
                                 .create(c)
