@@ -1,11 +1,6 @@
 package io.podcst.android.specs;
 
 import android.graphics.Color;
-import android.os.Build;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.SpannedString;
-import android.view.ViewGroup;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.drawable.ScalingUtils;
@@ -17,7 +12,7 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.fresco.FrescoImage;
-import com.facebook.litho.widget.Text;
+import com.facebook.litho.widget.Card;
 import com.facebook.yoga.YogaEdge;
 
 import io.podcst.android.R;
@@ -37,29 +32,21 @@ public class PodcastDetailsSpec {
                 .setUri(podcast.cover)
                 .build();
 
-        Spanned desc;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            desc = Html.fromHtml(podcast.description, Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            desc = Html.fromHtml(podcast.description);
-        }
-
-        ComponentLayout.ContainerBuilder text = Column.create(c)
-                .paddingDip(YogaEdge.ALL, 16)
-                .child(
-                        Text.create(c)
-                                .text(podcast.title)
-                                .textSizeSp(20)
-                                .textStyle(android.graphics.Typeface.BOLD)
-                ).child(
-                        Text.create(c)
-                                .text(podcast.author)
-                                .textSizeSp(12)
-                ).child(
-                        Text.create(c)
-                                .text(desc)
-                                .textSizeSp(16)
+        Card.Builder titleBar = Card.create(c)
+                .content(PodcastTitleBar.create(c)
+                        .title(podcast.title)
+                        .author(podcast.author)
                 );
+
+        Card.Builder description = Card.create(c)
+                .content(PodcastDescription.create(c)
+                        .description(podcast.description)
+                );
+
+        ComponentLayout.ContainerBuilder info = Column.create(c)
+                .paddingDip(YogaEdge.ALL, 16)
+                .child(titleBar)
+                .child(description);
 
         return Column.create(c)
                 .backgroundColor(Color.WHITE)
@@ -69,7 +56,7 @@ public class PodcastDetailsSpec {
                                 .placeholderImageScaleType(ScalingUtils.ScaleType.CENTER_CROP)
                                 .controller(controller)
                 ).child(
-                        text
+                        info
                 ).build();
     }
 }
