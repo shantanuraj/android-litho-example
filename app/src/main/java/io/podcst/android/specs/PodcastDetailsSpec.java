@@ -1,7 +1,6 @@
 package io.podcst.android.specs;
 
 import android.graphics.Color;
-import android.text.style.TtsSpan;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.drawable.ScalingUtils;
