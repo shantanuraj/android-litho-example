@@ -39,6 +39,7 @@ public class PodcastDetailsSpec {
                         Text.create(c)
                                 .text(podcast.title)
                                 .textSizeSp(20)
+                                .textStyle(android.graphics.Typeface.BOLD)
                 ).child(
                         Text.create(c)
                                 .text(podcast.author)
