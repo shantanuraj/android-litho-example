@@ -3,22 +3,24 @@ package io.podcst.android;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.OrientationHelper;
 import android.widget.Toast;
 
+import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
+import com.facebook.litho.ComponentInfo;
 import com.facebook.litho.LithoView;
-import com.facebook.litho.widget.Text;
+import com.facebook.litho.widget.LinearLayoutInfo;
+import com.facebook.litho.widget.Recycler;
+import com.facebook.litho.widget.RecyclerBinder;
 
 import java.util.List;
 
 import io.podcst.android.data.Api;
 import io.podcst.android.data.Podcst;
 import io.podcst.android.data.PodcstsResponse;
-import io.reactivex.Observer;
-import io.reactivex.SingleObserver;
+import io.podcst.android.specs.PodcastRow;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -30,22 +32,47 @@ public class MainActivity extends AppCompatActivity {
 
     private Api.ApiService api;
 
+    private RecyclerBinder recyclerBinder;
+    private ComponentContext viewContext;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         api = Api.get();
 
-        final ComponentContext c = new ComponentContext(this);
+        viewContext = new ComponentContext(this);
+
+        recyclerBinder = new RecyclerBinder(
+                viewContext,
+                new LinearLayoutInfo(
+                        getApplicationContext(),
+                        OrientationHelper.VERTICAL,
+                        false
+                ));
+
+        final Component component = Recycler.create(viewContext)
+                .binder(recyclerBinder)
+                .build();
 
         final LithoView lithoView = LithoView.create(
-                this /* context */,
-                Text.create(c)
-                        .text("Gamezop")
-                        .textSizeDip(50)
-                        .build());
+                this,
+                component);
 
         setContentView(lithoView);
+    }
+
+    private static void populateList(RecyclerBinder recyclerBinder,
+                                     ComponentContext c,
+                                     List<Podcst> podcasts) {
+        int i = 0;
+        for (Podcst podcast : podcasts) {
+            recyclerBinder.insertItemAt(
+                    i++,
+                    ComponentInfo.create()
+                            .component(PodcastRow.create(c).build())
+                            .build());
+        }
     }
 
     @Override
@@ -58,10 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new DisposableObserver<PodcstsResponse>() {
                     @Override
                     public void onNext(PodcstsResponse value) {
-                        List<Podcst> podcasts = value.data;
-                        for(Podcst podcst : podcasts) {
-                            Log.d("NEXT", podcst.title);
-                        }
+                        populateList(recyclerBinder, viewContext, value.data);
                     }
 
                     @Override
