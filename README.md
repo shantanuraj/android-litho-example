@@ -2,6 +2,11 @@
 
 Demo application to showcase the use of Facebook's [litho](https://github.com/facebook/litho) library to build user interfaces.
 
+<div style="display: flex; align-items: center; justify-content: center;">
+  <img alt="Main Activity" width="300" src="assets/main.png"></img>
+  <img alt="Details Activity" width="300" src="assets/details.png"></img>
+</div>
+
 ## Getting Started
 
 Clone the project
