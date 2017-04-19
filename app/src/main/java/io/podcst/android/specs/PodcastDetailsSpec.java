@@ -1,8 +1,10 @@
 package io.podcst.android.specs;
 
 import android.graphics.Color;
+import android.view.ViewGroup;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.litho.Column;
 import com.facebook.litho.ComponentContext;
@@ -48,6 +50,7 @@ public class PodcastDetailsSpec {
                 .child(
                         FrescoImage.create(c)
                                 .placeholderImageRes(R.drawable.ic_placeholder_cover)
+                                .placeholderImageScaleType(ScalingUtils.ScaleType.CENTER_CROP)
                                 .controller(controller)
                 ).child(
                         text
