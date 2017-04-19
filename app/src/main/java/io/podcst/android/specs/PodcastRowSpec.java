@@ -2,6 +2,7 @@ package io.podcst.android.specs;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -44,6 +45,8 @@ public class PodcastRowSpec {
                 .child(
                         Text.create(c)
                                 .text(podcast.title)
+                                .maxLines(1)
+                                .ellipsize(TextUtils.TruncateAt.END)
                                 .textSizeSp(20)
                 ).child(
                         Text.create(c)

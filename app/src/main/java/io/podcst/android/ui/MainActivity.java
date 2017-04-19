@@ -20,6 +20,7 @@ import io.podcst.android.data.Api;
 import io.podcst.android.data.Podcast;
 import io.podcst.android.data.PodcastsResponse;
 import io.podcst.android.specs.PodcastRow;
+import io.podcst.android.specs.PodcastRowCard;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         for (Podcast podcast : podcasts) {
             ComponentInfo.Builder componentInfoBuilder = ComponentInfo.create();
             componentInfoBuilder.component(
-                    PodcastRow.create(c)
+                    PodcastRowCard.create(c)
                         .podcast(podcast)
                         .build());
 
