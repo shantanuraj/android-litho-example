@@ -1,4 +1,4 @@
-package io.podcst.android;
+package io.podcst.android.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
