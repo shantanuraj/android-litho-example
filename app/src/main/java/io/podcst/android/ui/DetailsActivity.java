@@ -1,9 +1,14 @@
 package io.podcst.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
@@ -58,6 +63,23 @@ public class DetailsActivity extends AppCompatActivity {
                 this,
                 view);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         setContentView(lithoView);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent upIntent = NavUtils.getParentActivityIntent(this);
+                NavUtils.navigateUpTo(this, upIntent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
