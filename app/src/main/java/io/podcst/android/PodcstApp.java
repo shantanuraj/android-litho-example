@@ -2,6 +2,7 @@ package io.podcst.android;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.soloader.SoLoader;
 
 /**
@@ -15,5 +16,6 @@ public class PodcstApp extends Application {
         super.onCreate();
 
         SoLoader.init(this, false);
+        Fresco.initialize(this);
     }
 }

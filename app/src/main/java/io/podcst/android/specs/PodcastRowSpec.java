@@ -2,14 +2,21 @@ package io.podcst.android.specs;
 
 import android.graphics.Color;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.litho.Column;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
+import com.facebook.litho.Row;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
+import com.facebook.litho.fresco.FrescoImage;
 import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaEdge;
+
+import io.podcst.android.R;
+import io.podcst.android.data.Podcst;
 
 /**
  * Created by eve on 19/04/17.
@@ -19,23 +26,35 @@ import com.facebook.yoga.YogaEdge;
 public class PodcastRowSpec {
 
     @OnCreateLayout
-    static ComponentLayout onCreateLayout(
-            ComponentContext c,
-            @Prop String title,
-            @Prop String author
-    ) {
+    static ComponentLayout onCreateLayout(ComponentContext c, @Prop Podcst podcast) {
 
-        return Column.create(c)
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(podcast.thumbnail)
+                .build();
+
+        ComponentLayout.ContainerBuilder text = Column.create(c)
                 .paddingDip(YogaEdge.ALL, 16)
-                .backgroundColor(Color.WHITE)
                 .child(
                         Text.create(c)
-                            .text(title)
-                            .textSizeSp(20)
+                                .text(podcast.title)
+                                .textSizeSp(20)
                 ).child(
-                        Text.create((c))
-                            .text(author)
-                            .textSizeSp(12)
+                        Text.create(c)
+                                .text(podcast.author)
+                                .textSizeSp(12)
+                );
+
+        return Row.create(c)
+                .backgroundColor(Color.WHITE)
+                .child(
+                        FrescoImage.create(c)
+                                .placeholderImageRes(R.drawable.ic_placeholder_cover)
+                                .controller(controller)
+                                .withLayout()
+                                .widthDip(100)
+                                .heightDip(100)
+                ).child(
+                        text
                 ).build();
     }
 }

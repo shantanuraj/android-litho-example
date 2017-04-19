@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
             ComponentInfo.Builder componentInfoBuilder = ComponentInfo.create();
             componentInfoBuilder.component(
                     PodcastRow.create(c)
-                        .title(podcast.title)
-                        .author(podcast.author)
+                        .podcast(podcast)
                         .build());
 
             recyclerBinder.insertItemAt(i++,  componentInfoBuilder.build());
