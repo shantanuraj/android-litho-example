@@ -24,11 +24,11 @@ Open project in Android Studio, and press play
 
 ## Built With
 
-* [litho](https://github.com/facebook/litho)      - View generation library
-* [fresco](https://github.com/facebook/fresco)    - Image loading
-* [rxjava](https://github.com/ReactiveX/RxJava)   - Reactive programming toolkit
-* [retrofit](https://github.com/square/retrofit)  - Networking
-* [gson](https://github.com/google/gson)          - JSON marshalling / unmarshalling
+* [Litho](https://github.com/facebook/litho)      - View generation library
+* [Fresco](https://github.com/facebook/fresco)    - Image loading
+* [RxJava](https://github.com/ReactiveX/RxJava)   - Reactive programming toolkit
+* [Retrofit](https://github.com/square/retrofit)  - Networking
+* [GSON](https://github.com/google/gson)          - JSON marshalling / unmarshalling
 
 ## Authors
 
