@@ -16,7 +16,7 @@ import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaEdge;
 
 import io.podcst.android.R;
-import io.podcst.android.data.Podcst;
+import io.podcst.android.data.Podcast;
 
 /**
  * Created by eve on 19/04/17.
@@ -26,7 +26,7 @@ import io.podcst.android.data.Podcst;
 public class PodcastRowSpec {
 
     @OnCreateLayout
-    static ComponentLayout onCreateLayout(ComponentContext c, @Prop Podcst podcast) {
+    static ComponentLayout onCreateLayout(ComponentContext c, @Prop Podcast podcast) {
 
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setUri(podcast.thumbnail)

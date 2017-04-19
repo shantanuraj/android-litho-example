@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by eve on 19/04/17.
  */
 
-public class Podcst implements Parcelable {
+public class Podcast implements Parcelable {
     public String id;
     public String url;
     public String title;
@@ -39,10 +39,10 @@ public class Podcst implements Parcelable {
         dest.writeString(this.thumbnail);
     }
 
-    public Podcst() {
+    public Podcast() {
     }
 
-    protected Podcst(Parcel in) {
+    protected Podcast(Parcel in) {
         this.id = in.readString();
         this.url = in.readString();
         this.title = in.readString();
@@ -55,15 +55,15 @@ public class Podcst implements Parcelable {
         this.thumbnail = in.readString();
     }
 
-    public static final Parcelable.Creator<Podcst> CREATOR = new Parcelable.Creator<Podcst>() {
+    public static final Parcelable.Creator<Podcast> CREATOR = new Parcelable.Creator<Podcast>() {
         @Override
-        public Podcst createFromParcel(Parcel source) {
-            return new Podcst(source);
+        public Podcast createFromParcel(Parcel source) {
+            return new Podcast(source);
         }
 
         @Override
-        public Podcst[] newArray(int size) {
-            return new Podcst[size];
+        public Podcast[] newArray(int size) {
+            return new Podcast[size];
         }
     };
 }

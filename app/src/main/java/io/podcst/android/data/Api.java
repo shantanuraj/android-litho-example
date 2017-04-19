@@ -25,7 +25,7 @@ public class Api {
     public static ApiService get() {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(PodcstsResponse.class, new PodcstsDeserializer())
+                .registerTypeAdapter(PodcastsResponse.class, new PodcstsDeserializer())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -37,24 +37,24 @@ public class Api {
         return retrofit.create(ApiService.class);
     }
 
-    private static class PodcstsDeserializer implements JsonDeserializer<PodcstsResponse> {
+    private static class PodcstsDeserializer implements JsonDeserializer<PodcastsResponse> {
         @Override
-        public PodcstsResponse deserialize(JsonElement json,
+        public PodcastsResponse deserialize(JsonElement json,
                                            Type typeOfT,
                                            JsonDeserializationContext context) {
-            return new Gson().fromJson(json, PodcstsResponse.class);
+            return new Gson().fromJson(json, PodcastsResponse.class);
         }
     }
 
     public interface ApiService {
 
         @GET(Constants.FEATURED)
-        Observable<PodcstsResponse> getFeaturedPodcasts();
+        Observable<PodcastsResponse> getFeaturedPodcasts();
 
         @GET(Constants.POPULAR)
-        Observable<PodcstsResponse> getPopularPodcasts();
+        Observable<PodcastsResponse> getPopularPodcasts();
 
         @GET(Constants.TRENDING)
-        Observable<PodcstsResponse> getTrendingPodcasts();
+        Observable<PodcastsResponse> getTrendingPodcasts();
     }
 }

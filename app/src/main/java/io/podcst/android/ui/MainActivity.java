@@ -17,8 +17,8 @@ import com.facebook.litho.widget.RecyclerBinder;
 import java.util.List;
 
 import io.podcst.android.data.Api;
-import io.podcst.android.data.Podcst;
-import io.podcst.android.data.PodcstsResponse;
+import io.podcst.android.data.Podcast;
+import io.podcst.android.data.PodcastsResponse;
 import io.podcst.android.specs.PodcastRow;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static void populateList(RecyclerBinder recyclerBinder,
                                      ComponentContext c,
-                                     List<Podcst> podcasts) {
+                                     List<Podcast> podcasts) {
         int i = 0;
-        for (Podcst podcast : podcasts) {
+        for (Podcast podcast : podcasts) {
             ComponentInfo.Builder componentInfoBuilder = ComponentInfo.create();
             componentInfoBuilder.component(
                     PodcastRow.create(c)
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
         api.getFeaturedPodcasts()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableObserver<PodcstsResponse>() {
+                .subscribe(new DisposableObserver<PodcastsResponse>() {
                     @Override
-                    public void onNext(PodcstsResponse value) {
+                    public void onNext(PodcastsResponse value) {
                         populateList(recyclerBinder, viewContext, value.data);
                     }
 

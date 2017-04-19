@@ -9,10 +9,10 @@ import java.util.List;
  * Created by eve on 19/04/17.
  */
 
-public class PodcstsResponse implements Parcelable {
+public class PodcastsResponse implements Parcelable {
     public int statusCode;
     public String message;
-    public List<Podcst> data;
+    public List<Podcast> data;
 
     @Override
     public int describeContents() {
@@ -26,24 +26,24 @@ public class PodcstsResponse implements Parcelable {
         dest.writeTypedList(this.data);
     }
 
-    public PodcstsResponse() {
+    public PodcastsResponse() {
     }
 
-    protected PodcstsResponse(Parcel in) {
+    protected PodcastsResponse(Parcel in) {
         this.statusCode = in.readInt();
         this.message = in.readString();
-        this.data = in.createTypedArrayList(Podcst.CREATOR);
+        this.data = in.createTypedArrayList(Podcast.CREATOR);
     }
 
-    public static final Creator<PodcstsResponse> CREATOR = new Creator<PodcstsResponse>() {
+    public static final Creator<PodcastsResponse> CREATOR = new Creator<PodcastsResponse>() {
         @Override
-        public PodcstsResponse createFromParcel(Parcel source) {
-            return new PodcstsResponse(source);
+        public PodcastsResponse createFromParcel(Parcel source) {
+            return new PodcastsResponse(source);
         }
 
         @Override
-        public PodcstsResponse[] newArray(int size) {
-            return new PodcstsResponse[size];
+        public PodcastsResponse[] newArray(int size) {
+            return new PodcastsResponse[size];
         }
     };
 }

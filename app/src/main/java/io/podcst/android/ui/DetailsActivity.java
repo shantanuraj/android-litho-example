@@ -9,7 +9,7 @@ import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
 
 import io.podcst.android.data.Constants;
-import io.podcst.android.data.Podcst;
+import io.podcst.android.data.Podcast;
 import io.podcst.android.specs.PodcastDetails;
 
 /**
@@ -31,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
             return;
         }
 
-        final Podcst podcast = bundle.getParcelable(Constants.DETAILS_BUNDLE);
+        final Podcast podcast = bundle.getParcelable(Constants.DETAILS_BUNDLE);
 
         final Component view = PodcastDetails.create(viewContext)
                 .podcast(podcast)
