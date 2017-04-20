@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Podcst</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_trending">Trending</string>
+    <string name="title_featured">Featured</string>
+    <string name="title_search">Search</string>
 </resources>
