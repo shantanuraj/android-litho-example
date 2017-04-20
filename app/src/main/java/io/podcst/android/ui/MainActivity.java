@@ -64,17 +64,24 @@ public class MainActivity extends AppCompatActivity
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    public void showFragment(final String podcastsCategory, final List<Podcast> podcasts) {
+    public void showLoading() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, new LoadingFragment())
+                .commit();
+    }
+
+    public void showPodcastList(final String podcastsCategory, final List<Podcast> podcasts) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, MainFragment.newInstance(
                         podcastsCategory,
-                        podcasts != null ? new ArrayList<>(podcasts) : null))
+                        new ArrayList<>(podcasts)))
                 .commit();
     }
 
     private void loadPodcasts(final String podcastsCategory) {
-        showFragment(podcastsCategory, null);
+        showLoading();
 
         api.getPodcasts(podcastsCategory)
                 .subscribeOn(Schedulers.newThread())
@@ -82,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                 .subscribe(new DisposableObserver<PodcastsResponse>() {
                     @Override
                     public void onNext(PodcastsResponse value) {
-                        showFragment(podcastsCategory, value.data);
+                        showPodcastList(podcastsCategory, value.data);
                     }
 
                     @Override
