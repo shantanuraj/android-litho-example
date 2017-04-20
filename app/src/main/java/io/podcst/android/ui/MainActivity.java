@@ -17,6 +17,7 @@ import com.facebook.litho.widget.RecyclerBinder;
 import java.util.List;
 
 import io.podcst.android.data.Api;
+import io.podcst.android.data.Constants;
 import io.podcst.android.data.Podcast;
 import io.podcst.android.data.PodcastsResponse;
 import io.podcst.android.specs.PodcastRowCard;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadPodcasts() {
-        api.getFeaturedPodcasts()
+        api.getPodcasts(Constants.FEATURED)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableObserver<PodcastsResponse>() {
