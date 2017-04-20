@@ -1,5 +1,7 @@
 package io.podcst.android.specs;
 
+import android.text.Layout;
+
 import com.facebook.litho.Column;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
@@ -27,7 +29,8 @@ public class LoadingSpec {
                 .child(
                         Text.create(c)
                                 .textRes(R.string.loading)
-                                .textSizeSp(16)
+                                .textSizeSp(20)
+                                .textAlignment(Layout.Alignment.ALIGN_CENTER)
                 ).build();
     }
 }
