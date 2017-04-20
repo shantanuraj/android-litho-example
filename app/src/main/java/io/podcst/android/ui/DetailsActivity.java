@@ -76,8 +76,7 @@ public class DetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                Intent upIntent = NavUtils.getParentActivityIntent(this);
-                NavUtils.navigateUpTo(this, upIntent);
+                supportFinishAfterTransition();
                 return true;
         }
         return super.onOptionsItemSelected(item);
